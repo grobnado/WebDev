@@ -15,14 +15,14 @@ $user = new User($db);
 
 
 if (
-    !empty($_POST['idCity']) &&
+    !empty($_POST['city_id']) &&
     !empty($_POST['name']) &&
     !empty($_POST['username'])
 ) {
 
 
     $user->name = $_POST['name'];
-    $user->idCity = $_POST['idCity'];
+    $user->idCity = $_POST['city_id'];
     $user->username = $_POST['username'];
 
 

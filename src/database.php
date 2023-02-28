@@ -8,9 +8,9 @@ class Database
 {
 
     private string $host = 'localhost';
-    private string $db_name = 'schemaa';
+    private string $db_name = 'mydb';
     private string $username = 'root';
-    private string $password = 'qwerty123';
+    private string $password = 'qwerty1';
 
     public ?PDO $conn = null;
 
@@ -22,7 +22,7 @@ class Database
             $this->conn->exec("set names utf8");
             $statement = $this->conn->query('SELECT * FROM names');
             while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-                echo $row['id'] . ' ' . $row['name']. ' '. $row['username'].' '. $row['idCity'];
+                echo $row['id'] . ' ' . $row['name']. ' '. $row['username'].' '. $row['city_id'];
             }
  
         } catch (PDOException $exception) {
@@ -33,6 +33,7 @@ class Database
     }
 
 }
+
 
 // $objectDataBase = new Database;
 // $objectDataBase->getConnection();

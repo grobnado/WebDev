@@ -1,17 +1,13 @@
 {
-    "name": "nikita/task2php",
+    "name": "katya/grobnado",
     "require": {
-        "ext-pdo": "*"
-    },
-    "autoload": {
-        "psr-4": {
-            "Nikita\\Task2php\\": "src/"
-        }
+        "ext-pdo": "*",
+        "vimeo/php-mysql-engine": "^0.6.1"
     },
     "authors": [
         {
-            "name": "Nikita Nech",
-            "email": "nechit@gmail.com"
+            "name": "Katya",
+            "email": "grobnado@gmail.com"
         }
     ]
 }
