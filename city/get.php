@@ -4,45 +4,42 @@ header("Content-Type: application/json; charset=UTF-8");
 
 
 include_once '../src/database.php';
-include_once '../models/user.php';
+include_once '../models/city.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
-$user = new User($db);
+$city = new City($db);
 
 
-$stmt = $user->get();
+$stmt = $city->get();
 
 $num = $stmt->rowCount();
 
 if ($num > 0) {
 
-    $user_arr = array();
-    $user_arr["items"] = array();
+    $city_arr = array();
+    $city_arr["items"] = array();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
-        // извлекаем строку
         extract($row);
 
-        $user_item = array(
+        $city_item = array(
             "id" => $id,
-            "username" => $username,
-            "idCity" => $idCity,
             "name" => $name,
         );
 
-        $user_arr["items"][] = $user_item;
+        $city_arr["items"][] = $city_item;
 
     }
 
     http_response_code(200);
 
-    echo json_encode($user_arr);
+    echo json_encode($city_arr);
 
 } else {
     http_response_code(404);
 
-    echo json_encode(["message" => "Пользователи не найдены."]);
+    echo json_encode(["message" => "Города не найдены."]);
 }

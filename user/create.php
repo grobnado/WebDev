@@ -4,7 +4,7 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 
 
-include_once '../config/database.php';
+include_once '../src/database.php';
 include_once '../models/user.php';
 
 $database = new Database();
@@ -15,14 +15,14 @@ $user = new User($db);
 
 
 if (
-    !empty($_POST['city']) &&
+    !empty($_POST['idCity']) &&
     !empty($_POST['name']) &&
     !empty($_POST['username'])
 ) {
 
 
     $user->name = $_POST['name'];
-    $user->city = $_POST['city'];
+    $user->idCity = $_POST['idCity'];
     $user->username = $_POST['username'];
 
 

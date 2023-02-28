@@ -1,6 +1,17 @@
 {
+    "name": "nikita/task2php",
     "require": {
-      "ext-pdo": "*",
-        "vlucas/phpdotenv": "^5.4"
-    }
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nikita\\Task2php\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nikita Nech",
+            "email": "nechit@gmail.com"
+        }
+    ]
 }
