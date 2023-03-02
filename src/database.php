@@ -2,21 +2,22 @@
 
 
 require '../vendor/autoload.php';
-
+$dotenv = new \Dotenv\Dotenv(dirname(__DIR__));
+$dotenv->load();
 
 class Database
 {
 
-    private string $host = 'localhost';
-    private string $db_name = 'mydb';
-    private string $username = 'root';
-    private string $password = 'qwerty1';
+    private string $host;
+    private string $db_name;
+    private string $username;
+    private string $password;
 
     public ?PDO $conn = null;
 
     public function getConnection(): ?PDO
     {
-
+        $this->host= $_ENV['MYSQL_HOST'];
         try {
             $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
             $this->conn->exec("set names utf8");
@@ -35,8 +36,8 @@ class Database
 }
 
 
-// $objectDataBase = new Database;
-// $objectDataBase->getConnection();
+$objectDataBase = new Database;
+$objectDataBase->getConnection();
 
 
 

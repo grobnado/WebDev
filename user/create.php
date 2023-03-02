@@ -22,7 +22,7 @@ if (
 
 
     $user->name = $_POST['name'];
-    $user->idCity = $_POST['city_id'];
+    $user->city_id = $_POST['city_id'];
     $user->username = $_POST['username'];
 
 

@@ -29,7 +29,7 @@ if ($num > 0) {
         $user_item = array(
             "id" => $id,
             "username" => $username,
-            "idCity" => $idCity,
+            "city_id" => $city_id,
             "name" => $name,
         );
 

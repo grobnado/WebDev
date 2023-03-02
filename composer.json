@@ -1,13 +1,13 @@
 {
     "name": "katya/grobnado",
+    "autoload": {
+        "psr-4": {
+            "Katya\\Grobnado\\": "src/"
+        }
+    },
     "require": {
         "ext-pdo": "*",
-        "vimeo/php-mysql-engine": "^0.6.1"
-    },
-    "authors": [
-        {
-            "name": "Katya",
-            "email": "grobnado@gmail.com"
-        }
-    ]
+        "vlucas/phpdotenv": "^5.5",
+        "symfony/dotenv": "^6.2"
+    }
 }

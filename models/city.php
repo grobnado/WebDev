@@ -5,7 +5,7 @@ use JetBrains\PhpStorm\NoReturn;
 class City
 {
     private ?PDO $conn;
-    private string $table_name = "cities";
+    private string $table_name = "city";
     public int $id;
     public string $name;
     
@@ -51,13 +51,14 @@ class City
     function update(): bool
     {
 
-        $query = "UPDATE" . $this->table_name . "SET name = :name, WHERE id = :id";
+        $query = "UPDATE " . $this->table_name . " SET name = :name WHERE id = :id";
     
 
         $stmt = $this->conn->prepare($query);
     
 
         $this->name = htmlspecialchars(strip_tags($this->name));
+        $this->name = htmlspecialchars(strip_tags($this->id));
 
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":id", $this->id);
@@ -71,13 +72,13 @@ class City
     
     function delete(): bool
     {
-        $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+        $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";
     
         $stmt = $this->conn->prepare($query);
     
         $this->id = htmlspecialchars(strip_tags($this->id));
     
-        $stmt->bindParam(1, $this->id);
+        $stmt->bindParam(":id", $this->id);
     
      
         if ($stmt->execute()) {

@@ -11,7 +11,7 @@ class User
     private string $table_name = "names";
     public int $id;
     public string $username;
-    public string $idCity;
+    public string $city_id;
 
     public  string $name;
 
@@ -35,18 +35,18 @@ class User
     function create(): bool
     {
 
-        $query = "INSERT INTO " . $this->table_name . " SET name=:name, idCity=:idCity, username=:username";
+        $query = "INSERT INTO " . $this->table_name . " SET name=:name, city_id=:city_id, username=:username";
 
         $stmt = $this->conn->prepare($query);
 
 
         $this->name = htmlspecialchars(strip_tags($this->name));
-        $this->idCity = htmlspecialchars(strip_tags($this->idCity));
+        $this->city_id = htmlspecialchars(strip_tags($this->city_id));
         $this->username = htmlspecialchars(strip_tags($this->username));
 
 
         $stmt->bindParam(":name", $this->name);
-        $stmt->bindParam(":idCity", $this->idCity);
+        $stmt->bindParam(":city_id", $this->city_id);
         $stmt->bindParam(":username", $this->username);
 
         if ($stmt->execute()) {
@@ -59,20 +59,19 @@ class User
     function update(): bool
 {
 
-    $query = "UPDATE
-            " . $this->table_name . "
-        SET name = :name, username = :username, idCity = :idCity,
-        WHERE id = :id";
+    $query = "UPDATE " . $this->table_name . " SET name = :name, username = :username, city_id = :city_id WHERE id = :id";
 
     $stmt = $this->conn->prepare($query);
 
     $this->name = htmlspecialchars(strip_tags($this->name));
-    $this->price = htmlspecialchars(strip_tags($this->username));
-    $this->description = htmlspecialchars(strip_tags($this->idCity));
+    $this->username = htmlspecialchars(strip_tags($this->username));
+    $this->city_id = htmlspecialchars(strip_tags($this->city_id));
+    $this->id = htmlspecialchars(strip_tags($this->id));
+
 
     $stmt->bindParam(":name", $this->name);
     $stmt->bindParam(":username", $this->username);
-    $stmt->bindParam(":idCity", $this->idCity);
+    $stmt->bindParam(":city_id", $this->city_id);
     $stmt->bindParam(":id", $this->id);
 
 
@@ -84,13 +83,13 @@ class User
 
 function delete(): bool
 {
-    $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+    $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";
 
     $stmt = $this->conn->prepare($query);
 
     $this->id = htmlspecialchars(strip_tags($this->id));
 
-    $stmt->bindParam(1, $this->id);
+    $stmt->bindParam(":id", $this->id);
 
     if ($stmt->execute()) {
         return true;
