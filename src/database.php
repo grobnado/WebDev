@@ -18,6 +18,9 @@ class Database
     public function getConnection(): ?PDO
     {
         $this->host= $_ENV['MYSQL_HOST'];
+        $this->db_name= $_ENV['DATABASE_NAME'];
+        $this->username= $_ENV['MYSQL_USER'];
+        $this->password= $_ENV['MYSQL_PASSWORD'];
         try {
             $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
             $this->conn->exec("set names utf8");
